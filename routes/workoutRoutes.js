@@ -11,4 +11,14 @@ router.get('/workouts', (req, res) => {
         });
 });
 
+router.post('/workouts', ({ body }, res) => {
+    db.Workout.create(body)
+        .then (response => {
+            res.status(200).json(response);
+        })
+        .catch (err => {
+            res.status(500).json(err);
+        });
+});
+
 module.exports = router;
