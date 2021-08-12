@@ -1,6 +1,6 @@
 const router = require('express').Router();
-// const statsRoutes = require('../public/stats');
+const apiRoutes = require('./api');
 
-// router.use('/stats', statsRoutes);
+router.use('/api', apiRoutes);
 
 module.exports = router;
