@@ -2,13 +2,22 @@ const router = require('express').Router();
 const db = require('../models');
 
 router.get('/workouts', (req, res) => {
-    db.Workout.find({})
-        .then (response => {
-            res.status(200).json(response);
-        })
-        .catch (err => {
-            res.status(500).json(err);
-        });
+    db.Workout.aggregate([
+        {
+            $addFields: {
+                totalDuration: {
+                    $sum: "$exercises.duration"
+                }
+            }
+        }
+    ])
+    .limit(7)
+    .then(response => {
+        res.status(200).json(response);
+    })
+    .catch(err => {
+        res.status(500).json(err);
+    });
 });
 
 router.get('/workouts/range', (req, res) => {
