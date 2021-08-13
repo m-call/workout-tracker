@@ -11,7 +11,6 @@ router.get('/workouts', (req, res) => {
             }
         }
     ])
-    .limit(7)
     .then(response => {
         res.status(200).json(response);
     })
