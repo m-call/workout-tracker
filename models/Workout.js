@@ -31,16 +31,19 @@ const WorkoutSchema = new Schema({
                 type: Number,
                 min: 1
             },
-            sets: {
+            reps: {
                 type: Number,
                 min: 1
             },
-            reps: {
+            sets: {
                 type: Number,
                 min: 1
             }
         }
-    ]
+    ],
+    totalDuration: {
+        type: Number
+    }
 });
 
 const Workout = mongoose.model("Workout", WorkoutSchema);
