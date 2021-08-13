@@ -1,6 +1,10 @@
+// Importing express and setting the router variable to express' router function
+// Importing our models folder and setting it to a db variable
 const router = require('express').Router();
 const db = require('../models');
 
+// API get request for workouts
+// Aggregates the sum of the durations of exercises
 router.get('/workouts', (req, res) => {
     db.Workout.aggregate([
         {
@@ -19,6 +23,8 @@ router.get('/workouts', (req, res) => {
     });
 });
 
+// API get request for workouts over a 7 day range
+// Aggregates the sum of the durations of exercises
 router.get('/workouts/range', (req, res) => {
     db.Workout.aggregate([
         {
@@ -39,6 +45,7 @@ router.get('/workouts/range', (req, res) => {
     });
 });
 
+// API post request for workouts when creating a new workout
 router.post('/workouts', (req, res) => {
     db.Workout.create({})
         .then (response => {
@@ -49,6 +56,7 @@ router.post('/workouts', (req, res) => {
         });
 });
 
+// API put request for workouts by ID when updating an existing workout
 router.put('/workouts/:id', (req, res) => {
     db.Workout.findByIdAndUpdate(req.params.id, {
         $push: {
@@ -67,4 +75,5 @@ router.put('/workouts/:id', (req, res) => {
     })
 });
 
+// Exporting the router variable
 module.exports = router;

@@ -1,6 +1,11 @@
+// Importing mongoose and creating a Schema variable from mongoose
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// The Workout Schema which consists of two keys: day and exercises
+// Day contains a type of Date and defaults to the current time and date
+// Exercises consists of an array with keys for each of the different values that
+// could be entered by the user when they enter a new workout
 const WorkoutSchema = new Schema({
     day: {
         type: Date,
@@ -43,6 +48,8 @@ const WorkoutSchema = new Schema({
     ]
 });
 
+// Setting a Workout variable to the Schema so that it can be exported
 const Workout = mongoose.model("Workout", WorkoutSchema);
 
+// Exporting the Workout Schema
 module.exports = Workout;
